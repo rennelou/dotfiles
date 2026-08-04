@@ -1,0 +1,41 @@
+# ============================================================
+# Segredos e credenciais — nunca versionar
+# ============================================================
+.env
+.env.*
+*.env
+*secrets*
+*credential*
+.git-credentials
+.netrc
+.netrc.*
+
+# Chaves SSH / GPG / criptografia
+.ssh/
+id_rsa
+id_ed25519
+id_ecdsa
+*.key
+*.pem
+*.p12
+*.pfx
+*.asc
+*.gpg
+
+# Clouds e tokens
+.aws/
+.gcloud/
+.config/gh/hosts.yml
+.config/gh/config.yml
+.azure/
+
+# ============================================================
+# Nix / build
+# ============================================================
+result
+result-*
+
+# ============================================================
+# Editor / SO
+# ============================================================
+.DS_Store
