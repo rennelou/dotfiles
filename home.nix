@@ -32,6 +32,8 @@
     # Proteção de segredos e qualidade no Git
     gitleaks
     pre-commit
+
+    cmake
   ];
 
   xdg.configFile = {
