@@ -349,7 +349,7 @@ if hl.plugin.hyprglass then
 
     -- Layer surfaces: each call whitelists the namespace and configures it
     hg.layer("wayar", { preset = "subtle", mask_threshold = 0.05 })
-    hg.layer("^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$")
+    hg.layer("^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$",  { preset = "subtle", mask_threshold = 0.05 })
     hg.layer("quickshell:bezel", { preset = "ui", mask_threshold = 0.3 })
     hg.layer("debug-panel", { exclude = true })
 
