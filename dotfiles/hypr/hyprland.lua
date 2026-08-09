@@ -41,6 +41,7 @@ local terminal    = "kitty"
 --
 hl.on("hyprland.start", function () 
   hl.exec_cmd("noctalia")
+  hl.exec_cmd("hyprpm reload -n")
 --   hl.exec_cmd("nm-applet")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
 end)
@@ -107,7 +108,7 @@ hl.config({
         },
 
         blur = {
-            enabled   = true,
+            enabled   = false,
             size      = 3,
             passes    = 2,
 	    new_optimizations = false,
