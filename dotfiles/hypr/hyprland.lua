@@ -370,5 +370,3 @@ end
 
 hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_light" })
 
--- For Noctalia Color templates
-require("noctalia").apply_theme()
