@@ -108,7 +108,7 @@ hl.config({
         },
 
         blur = {
-            enabled   = false,
+            enabled   = true,
             size      = 3,
             passes    = 2,
 	    new_optimizations = false,
@@ -369,6 +369,9 @@ if hl.plugin.hyprglass then
     })
 end
 
-hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
-hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
+--hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
+--hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
+
+hl.window_rule({ match = { class = "google-chrome" }, blur = true, opacity = "0.85 0.85" })
+hl.window_rule({ match = { class = "kitty" }, blur = true, opacity = "0.85 0.85" })
 
