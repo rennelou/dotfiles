@@ -22,7 +22,7 @@
     ripgrep
     fd
     eza
-    htop
+    btop
     zoxide
     fzf
     bat
@@ -30,6 +30,7 @@
     opencode
 
     ncdu
+    yazi
 
     # Proteção de segredos e qualidade no Git
     gitleaks

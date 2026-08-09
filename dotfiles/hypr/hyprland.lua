@@ -9,7 +9,6 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
-
 ------------------
 ---- MONITORS ----
 ------------------
@@ -29,8 +28,6 @@ hl.monitor({
 
 -- Set programs that you use
 local terminal    = "kitty"
-local fileManager = "dolphin"
-local menu        = "hyprlauncher"
 
 
 -------------------
@@ -58,6 +55,10 @@ end)
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
+hl.env("LIBVA_DRIVER_NAME", "nvidia")
+hl.env("__GLX_VENDOR_LIBRARY_NAME", "nvidia")
+hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
+hl.env("NVD_BACKEND", "direct")
 
 -----------------------
 ----- PERMISSIONS -----
@@ -90,13 +91,15 @@ hl.config({
 
         -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
         allow_tearing = false,
+
+	layout = "dwindle",
     },
 
     decoration = {
         rounding       = 20,
         rounding_power = 2,
 
-        shadow = {
+	shadow = {
             enabled      = true,
             range        = 4,
             render_power = 3,
@@ -107,7 +110,10 @@ hl.config({
             enabled   = true,
             size      = 3,
             passes    = 2,
+	    new_optimizations = false,
             vibrancy  = 0.1696,
+	    popups    = true,
+	    popups_ignorealpha = 0.2,
         },
     },
 })
@@ -212,8 +218,6 @@ hl.bind(mainMod .. " + Q", hl.dsp.exec_cmd(terminal))
 
 -- Core binds
 hl.bind(mainMod .. "+Space", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
-hl.bind(mainMod .. "+S", hl.dsp.exec_cmd(ipc .. "panel-toggle control-center"))
-hl.bind(mainMod .. "+comma", hl.dsp.exec_cmd(ipc .. "settings-toggle"))
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(ipc .. "window-switcher"))
 
 -- Move focus with mainMod + arrow keys
@@ -247,10 +251,10 @@ hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd(ipc .. "brightness-down"))
 
 
 -- Requires playerctl
-hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
-hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+--hl.bind("XF86AudioNext",  hl.dsp.exec_cmd("playerctl next"),       { locked = true })
+--hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+--hl.bind("XF86AudioPlay",  hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
+--hl.bind("XF86AudioPrev",  hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
 
 
 --------------------------------
@@ -326,3 +330,45 @@ hl.layer_rule({
   blur = true,
   blur_popups = true,
 })
+
+if hl.plugin.hyprglass then
+    local hg = hl.plugin.hyprglass
+
+    hg.config({
+        default_theme = "dark",
+        default_preset = "clear",
+        tint_color = 0x8899aa22,
+
+        brightness = 0.9,
+        dark = { brightness = 0.82 },
+        light = { adaptive_boost = 0.5 },
+
+        layers = { enabled = 1 },
+    })
+
+    -- Layer surfaces: each call whitelists the namespace and configures it
+    hg.layer("wayar", { preset = "subtle", mask_threshold = 0.05 })
+    hg.layer("swaync")
+    hg.layer("quickshell:bezel", { preset = "ui", mask_threshold = 0.3 })
+    hg.layer("debug-panel", { exclude = true })
+
+    -- Presets
+    hg.preset("clear", {
+        glass_opacity = 0.8,
+        blur_strength = 1.5,
+        dark = { brightness = 0.7 },
+        light = { brightness = 1.2 },
+    })
+
+    hg.preset("contrasted", {
+        inherits = "high_contrast",
+        contrast = 1.2,
+        adaptive_dim = 1.5,
+        dark = { tint_color = 0x02142aa9 },
+    })
+end
+
+hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_light" })
+
+-- For Noctalia Color templates
+require("noctalia").apply_theme()
