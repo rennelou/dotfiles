@@ -41,7 +41,6 @@ local terminal    = "kitty"
 --
 hl.on("hyprland.start", function () 
   hl.exec_cmd("noctalia")
-  hl.exec_cmd("hyprpm reload -n")
 --   hl.exec_cmd("nm-applet")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
 end)
@@ -111,7 +110,7 @@ hl.config({
             enabled   = true,
             size      = 3,
             passes    = 2,
-	    new_optimizations = false,
+	    new_optimizations = true,
             vibrancy  = 0.1696,
 	    popups    = true,
 	    popups_ignorealpha = 0.2,
@@ -332,41 +331,5 @@ hl.layer_rule({
   blur_popups = true,
 })
 
-if hl.plugin.hyprglass then
-    local hg = hl.plugin.hyprglass
-
-    hg.config({
-        default_theme = "dark",
-        default_preset = "clear",
-        tint_color = 0x8899aa22,
-
-        brightness = 0.9,
-        dark = { brightness = 0.82 },
-        light = { adaptive_boost = 0.5 },
-
-        layers = { enabled = 1 },
-    })
-
-    -- Layer surfaces: each call whitelists the namespace and configures it
-    --hg.layer("wayar", { preset = "subtle", mask_threshold = 0.05 })
-    --hg.layer("quickshell:bezel", { preset = "ui", mask_threshold = 0.3 })
-    --hg.layer("debug-panel", { exclude = true })
-
-    -- Presets
-    hg.preset("clear", {
-        glass_opacity = 0.8,
-        blur_strength = 1.5,
-        dark = { brightness = 0.7 },
-        light = { brightness = 1.2 },
-    })
-
-    hg.preset("contrasted", {
-        inherits = "high_contrast",
-        contrast = 1.2,
-        adaptive_dim = 1.5,
-        dark = { tint_color = 0x02142aa9 },
-    })
-end
-
-hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
-hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
+hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.9 0.85" })
+hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.9 0.85" })
