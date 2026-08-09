@@ -368,5 +368,6 @@ if hl.plugin.hyprglass then
     })
 end
 
-hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_light", opacity = "0.85 0.85" })
+hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
+hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
 
