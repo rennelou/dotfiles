@@ -108,7 +108,7 @@ hl.config({
         },
 
         blur = {
-            enabled   = true,
+            enabled   = false,
             size      = 3,
             passes    = 2,
 	    new_optimizations = false,
@@ -349,7 +349,7 @@ if hl.plugin.hyprglass then
 
     -- Layer surfaces: each call whitelists the namespace and configures it
     hg.layer("wayar", { preset = "subtle", mask_threshold = 0.05 })
-    hg.layer("swaync")
+    hg.layer("^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd|window-switcher)$")
     hg.layer("quickshell:bezel", { preset = "ui", mask_threshold = 0.3 })
     hg.layer("debug-panel", { exclude = true })
 
@@ -369,9 +369,5 @@ if hl.plugin.hyprglass then
     })
 end
 
---hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
---hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
-
-hl.window_rule({ match = { class = "google-chrome" }, blur = true, opacity = "0.85 0.85" })
-hl.window_rule({ match = { class = "kitty" }, blur = true, opacity = "0.85 0.85" })
-
+hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
+hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.85 0.85" })
