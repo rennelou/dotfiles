@@ -333,3 +333,6 @@ hl.layer_rule({
 
 hl.window_rule({ match = { class = "google-chrome" }, tag = "+hyprglass_theme_dark", opacity = "0.9 0.85" })
 hl.window_rule({ match = { class = "kitty" }, tag = "+hyprglass_theme_dark", opacity = "0.9 0.85" })
+
+-- For Noctalia Color templates
+require("noctalia").apply_theme()
