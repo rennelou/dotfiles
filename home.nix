@@ -32,6 +32,9 @@
     ncdu
     yazi
 
+    # VPN GlobalProtect (OpenConnect + SSO/SAML; GUI e CLI)
+    gpclient
+
     # Proteção de segredos e qualidade no Git
     gitleaks
     pre-commit
