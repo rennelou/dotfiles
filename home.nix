@@ -60,6 +60,21 @@
     };
   };
 
+  # Cliente SSH: instala o openssh (não há versão do sistema) e
+  # gerencia ~/.ssh/config. Hosts pessoais ficam em machine.nix.
+  programs.ssh = {
+    enable = true;
+    package = pkgs.openssh;
+
+    # Desativa os "defaults" antigos do módulo e define só o essencial.
+    enableDefaultConfig = false;
+    settings."*" = {
+      HashKnownHosts = true;
+      ServerAliveInterval = 60;
+      ServerAliveCountMax = 3;
+    };
+  };
+
   # ==========================================
   # CONFIGURAÇÃO DO ZSH E FERRAMENTAS AUXILIARES
   # ==========================================
